@@ -15,7 +15,7 @@ fn main() {
     let timed_150ms = SystemSet::new().with_run_criteria(FixedTimestep::step(0.150));
     let timed_1sec = SystemSet::new().with_run_criteria(FixedTimestep::step(1.0));
 
-    App::build()
+    App::new()
         .add_plugin(SetupPlugin)
         .add_system(
             snake_movement_input

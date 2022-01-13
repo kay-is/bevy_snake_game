@@ -1,20 +1,19 @@
 use super::spawn_segment;
 use crate::{
     components::{Direction, Position, Size, SnakeHead, SnakeSegment},
-    resources::{Materials, SnakeSegments},
+    constants::SNAKE_HEAD_COLOR,
+    resources::SnakeSegments,
 };
 use bevy::prelude::*;
 
-pub(crate) fn spawn_snake(
-    mut commands: Commands,
-    materials: Res<Materials>,
-    mut segments: ResMut<SnakeSegments>,
-) {
+pub(crate) fn spawn_snake(mut commands: Commands, mut segments: ResMut<SnakeSegments>) {
     segments.0 = vec![
         commands
             .spawn_bundle(SpriteBundle {
-                material: materials.head_material.clone(),
-                sprite: Sprite::new(Vec2::new(10.0, 10.0)),
+                sprite: Sprite {
+                    color: SNAKE_HEAD_COLOR,
+                    ..Default::default()
+                },
                 ..Default::default()
             })
             .insert(SnakeHead {
@@ -24,10 +23,6 @@ pub(crate) fn spawn_snake(
             .insert(Position { x: 3, y: 3 })
             .insert(Size::square(0.8))
             .id(),
-        spawn_segment(
-            commands,
-            &materials.segment_material,
-            Position { x: 3, y: 2 },
-        ),
+        spawn_segment(commands, Position { x: 3, y: 2 }),
     ];
 }

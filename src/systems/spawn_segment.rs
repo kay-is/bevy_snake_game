@@ -1,14 +1,16 @@
-use crate::components::{Position, Size, SnakeSegment};
+use crate::{
+    components::{Position, Size, SnakeSegment},
+    constants::SNAKE_SEGMENT_COLOR,
+};
 use bevy::prelude::*;
 
-pub(crate) fn spawn_segment(
-    mut commands: Commands,
-    material: &Handle<ColorMaterial>,
-    position: Position,
-) -> Entity {
+pub(crate) fn spawn_segment(mut commands: Commands, position: Position) -> Entity {
     commands
         .spawn_bundle(SpriteBundle {
-            material: material.clone(),
+            sprite: Sprite {
+                color: SNAKE_SEGMENT_COLOR,
+                ..Default::default()
+            },
             ..Default::default()
         })
         .insert(SnakeSegment)

@@ -1,15 +1,17 @@
 use crate::{
     components::{Food, Position, Size},
     constants::*,
-    resources::Materials,
 };
 use bevy::prelude::*;
 use rand::random;
 
-pub(crate) fn food_spawner(mut commands: Commands, materials: Res<Materials>) {
+pub(crate) fn food_spawner(mut commands: Commands) {
     commands
         .spawn_bundle(SpriteBundle {
-            material: materials.food_material.clone(),
+            sprite: Sprite {
+                color: FOOD_COLOR,
+                ..Default::default()
+            },
             ..Default::default()
         })
         .insert(Food)

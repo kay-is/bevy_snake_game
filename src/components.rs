@@ -1,13 +1,23 @@
+use bevy::prelude::Component;
+
+#[derive(Component)]
 pub(crate) struct Food;
+
+#[derive(Component)]
 pub(crate) struct SnakeHead {
     pub direction: Direction,
 }
+
+#[derive(Component)]
 pub(crate) struct SnakeSegment;
-#[derive(Default, Copy, Clone, Eq, PartialEq, Hash)]
+
+#[derive(Component, Default, Copy, Clone, Eq, PartialEq, Hash)]
 pub(crate) struct Position {
     pub x: i32,
     pub y: i32,
 }
+
+#[derive(Component)]
 pub(crate) struct Size {
     pub width: f32,
     pub height: f32,
@@ -20,7 +30,8 @@ impl Size {
         }
     }
 }
-#[derive(PartialEq, Copy, Clone)]
+
+#[derive(Component, PartialEq, Copy, Clone)]
 pub(crate) enum Direction {
     Left,
     Up,
